@@ -14,7 +14,7 @@ def main():
         model_params = load_params(params_path)
 
         # Paths
-        train_data_path = "./data/interim/train_bow.csv"
+        train_data_path = "./data/interim/train_tfidf.csv"
         model_dir = "./models"  # Folder to save the model
         model_save_path = os.path.join(model_dir, "model.pkl")
 

@@ -12,7 +12,7 @@ def main():
     try:
         # Paths
         model_path = './models/model.pkl'
-        test_data_path = './data/interim/test_bow.csv'
+        test_data_path = './data/interim/test_tfidf.csv'
         reports_dir = './reports'  # Folder to store reports
         metrics_path = os.path.join(reports_dir, 'metrics.json')
 

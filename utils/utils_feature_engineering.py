@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 import yaml
 from typing import Tuple
 from utils.custom_logging import setup_logger
@@ -55,19 +55,19 @@ def fill_missing_values(df: pd.DataFrame) -> pd.DataFrame:
         raise
 
 
-def apply_bag_of_words(
+def apply_tfidf(
     X_train: pd.Series, X_test: pd.Series, max_features: int
-) -> Tuple[pd.DataFrame, pd.DataFrame, CountVectorizer]:
-    """Applies Bag of Words (CountVectorizer) to the training and test data."""
+) -> Tuple[pd.DataFrame, pd.DataFrame, TfidfVectorizer]:
+    """Applies TfidfVectorizer to the training and test data."""
     try:
-        vectorizer = CountVectorizer(max_features=max_features)
-        X_train_bow = vectorizer.fit_transform(X_train)
-        X_test_bow = vectorizer.transform(X_test)
+        vectorizer = TfidfVectorizer(max_features=max_features)
+        X_train_tfidf = vectorizer.fit_transform(X_train)
+        X_test_tfidf = vectorizer.transform(X_test)
 
         logger.info("Successfully applied Bag of Words with max_features=%s", max_features)
         return (
-            pd.DataFrame(X_train_bow.toarray(), columns=vectorizer.get_feature_names_out()),
-            pd.DataFrame(X_test_bow.toarray(), columns=vectorizer.get_feature_names_out()),
+            pd.DataFrame(X_train_tfidf.toarray(), columns=vectorizer.get_feature_names_out()),
+            pd.DataFrame(X_test_tfidf.toarray(), columns=vectorizer.get_feature_names_out()),
             vectorizer,
         )
     except ValueError as e:

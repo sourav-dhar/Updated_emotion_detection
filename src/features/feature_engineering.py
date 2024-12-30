@@ -1,10 +1,10 @@
 import os
 import pandas as pd
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 import yaml
 from typing import Tuple
 from utils.custom_logging import setup_logger
-from utils.utils_feature_engineering import load_params, read_data, fill_missing_values, apply_bag_of_words, save_data
+from utils.utils_feature_engineering import load_params, read_data, fill_missing_values, apply_tfidf, save_data
 
 # Initialize logger
 logger = setup_logger("feature_engineering_pipeline")
@@ -35,17 +35,17 @@ def main():
         y_test = test_data['sentiment'].values
 
         # Apply Bag of Words
-        X_train_bow, X_test_bow, _ = apply_bag_of_words(X_train, X_test, max_features)
+        X_train_tfidf, X_test_tfidf, _ = apply_tfidf(X_train, X_test, max_features)
 
         # Add labels to the DataFrames
-        X_train_bow['label'] = y_train
-        X_test_bow['label'] = y_test
+        X_train_tfidf['label'] = y_train
+        X_test_tfidf['label'] = y_test
 
         # Save data
         data_path = os.path.join("data", "interim")
         os.makedirs(data_path, exist_ok=True)
-        save_data(X_train_bow, os.path.join(data_path, 'train_bow.csv'))
-        save_data(X_test_bow, os.path.join(data_path, 'test_bow.csv'))
+        save_data(X_train_tfidf, os.path.join(data_path, 'train_tfidf.csv'))
+        save_data(X_test_tfidf, os.path.join(data_path, 'test_tfidf.csv'))
 
         logger.info("Feature engineering pipeline executed successfully.")
 

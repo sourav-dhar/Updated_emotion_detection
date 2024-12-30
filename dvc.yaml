@@ -38,7 +38,7 @@ stages:
   model_building:
     cmd: python src/model/model_building.py
     deps:
-    - data/interim/train_bow.csv
+    - data/interim/train_tfidf.csv
     - src/model/model_building.py
     - utils/custom_logging.py
     - utils/utils_model_building.py
@@ -53,7 +53,7 @@ stages:
     cmd: python src/model/model_evaluation.py
     deps:
     - models/model.pkl
-    - data/interim/test_bow.csv
+    - data/interim/test_tfidf.csv
     - utils/custom_logging.py
     - utils/utils_model_evaluation.py
     - src/model/model_evaluation.py
