@@ -25,7 +25,7 @@ def main():
         data_path = os.path.join("data", "raw")
         save_data(data_path, train_data, test_data)
 
-        logger.info("Data ingestion pipeline executed successfully.")
+        logger.info("Data ingestion pipeline executed successfully...cheers!!!")
     except Exception as e:
         logger.critical("An error occurred in the pipeline: %s", e)
 
