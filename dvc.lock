@@ -1,0 +1,30 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/data/data_ingestion.py
+    deps:
+    - path: params.yaml
+      hash: md5
+      md5: 34d617711bb776efe5e2c58c0bdaf619
+      size: 33
+    - path: src/data/data_ingestion.py
+      hash: md5
+      md5: 4e267c6dbf5d3b038c3cfd66263dcfcc
+      size: 1105
+    - path: utils/custom_logging.py
+      hash: md5
+      md5: 43ac6888812ba025d05b5e56836f842e
+      size: 933
+    - path: utils/utils_data_ingestion.py
+      hash: md5
+      md5: 5e75ea278c0ec44b16f2ce4bf8616508
+      size: 2924
+    params:
+      params.yaml:
+        data_ingestion.test_size: 0.3
+    outs:
+    - path: data/raw
+      hash: md5
+      md5: 50ed07ffa6a6044ea8fde8275e9f63d3.dir
+      size: 827973
+      nfiles: 2
